@@ -17,6 +17,16 @@ import { whatsappNumber, companyInfo } from "./mock";
 import cat from './content/img/catlogo.png';
 
 const YokoSunFooter = () => {
+	const handleWhatsAppClick = () => {
+		const cleanNumber = whatsappNumber.replace(/\D/g, '');
+		window.open(`https://wa.me/${cleanNumber}`, '_blank');
+	};
+
+	const handleTelegramClick = () => {
+		// Используем полный номер с кодом страны
+		window.open(`https://t.me/+${whatsappNumber.replace(/\D/g, '')}`, '_blank');
+	};
+
 	return (
 		<footer className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #4B0082 0%, #6B46C1 25%, #7C3AED 50%, #8B5CF6 75%, #A855F7 100%)' }}>
 			{/* Background Clouds */}
@@ -57,7 +67,6 @@ const YokoSunFooter = () => {
 									alt="YokoSun"
 									className="h-12 md:h-16 w-auto object-contain"
 								/>
-
 							</div>
 							<p className="text-purple-200 text-sm leading-relaxed">
 								Официальный дистрибьютор японских детских товаров премиум-класса в Казахстане
@@ -68,13 +77,19 @@ const YokoSunFooter = () => {
 						<div className="space-y-4">
 							<h3 className="text-lg font-semibold">Контакты</h3>
 							<div className="space-y-3">
-								<div className="flex items-center space-x-3">
+								<div
+									className="flex items-center space-x-3 transition-all duration-200 hover:scale-105 hover:text-green-300 cursor-pointer active:scale-95"
+									onClick={handleWhatsAppClick}
+								>
 									<MessageCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-									<span className="text-sm">WhatsApp: {whatsappNumber}</span>
+									<span className="text-sm">WhatsApp</span>
 								</div>
-								<div className="flex items-center space-x-3">
+								<div
+									className="flex items-center space-x-3 transition-all duration-200 hover:scale-105 hover:text-blue-300 cursor-pointer active:scale-95"
+									onClick={handleTelegramClick}
+								>
 									<MessageSquare className="w-5 h-5 text-blue-400 flex-shrink-0" />
-									<span className="text-sm">Telegram: {whatsappNumber}</span>
+									<span className="text-sm">Telegram</span>
 								</div>
 								<div className="flex items-center space-x-3">
 									<Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
@@ -82,7 +97,7 @@ const YokoSunFooter = () => {
 								</div>
 								<div className="flex items-center space-x-3">
 									<Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
-									<span className="text-sm">+7 (700) 026 40 70 </span>
+									<span className="text-sm">+7 (700) 026 40 70</span>
 								</div>
 								<div className="flex items-center space-x-3">
 									<Mail className="w-5 h-5 text-red-400 flex-shrink-0" />
@@ -167,7 +182,7 @@ const OriginalHome = () => {
 		<div className="min-h-screen">
 			<OriginalHeader onCallbackClick={() => setCallbackModalOpen(true)} />
 			<DiaperFeatures />
-			<div id="products" >
+			<div id="products">
 				<EnhancedProductGrid />
 			</div>
 
@@ -177,7 +192,6 @@ const OriginalHome = () => {
 				<YokoSunTestimonials />
 			</div>
 
-			{/* Add WhereToBuy and BecomePartner sections */}
 			<div id="where-buy">
 				<WhereToBuy />
 			</div>
